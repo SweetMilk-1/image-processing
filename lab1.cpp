@@ -11,16 +11,18 @@ using namespace std;
 
 namespace fs = std::filesystem;
 
-// ---------- утилиты ----------
-static inline uchar clamp8(int v)   { return (uchar)std::min(255, std::max(0, v)); }
-static inline uchar clamp8f(float v){ return (uchar)std::min(255.f, std::max(0.f, v)); }
 
-// Общая 2D-свёртка с квадратной нечётной маской, репликация границ.
-// kernel — ksize*ksize, divider — нормирующий множитель (сумма коэффициентов).
-// abs_resp=true — берётся модуль отклика (для контурных операторов).
-static Mat convolveOdd(const Mat& src, const float* kernel, int ksize,
-                       float divider, bool abs_resp)
-{
+static inline uchar clamp8(int v) { return (uchar)std::min(255, std::max(0, v)); }
+static inline uchar clamp8f(float v) { return (uchar)std::min(255.f, std::max(0.f, v)); }
+
+
+static Mat convolveOdd(
+    const Mat& src, 
+    const float* kernel, 
+    int ksize,
+    float divider, 
+    bool abs_resp
+) {
     CV_Assert(src.type() == CV_8U && (ksize & 1));
     Mat dst = Mat::zeros(src.size(), CV_8U);
     const int half = ksize / 2;

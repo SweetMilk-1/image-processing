@@ -15,4 +15,4 @@ g++ -std=c++17 -O2 -Wall lab1.cpp -o lab1 \
   -lopencv_core -lopencv_imgcodecs -lopencv_imgproc -lopencv_highgui \
   -Wl,-rpath,/opt/homebrew/lib
 
-echo "Сборка завершена: ./lab1"
+echo "Сборка завершена: ./lab1"a
